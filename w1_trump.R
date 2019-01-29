@@ -85,5 +85,26 @@ trump_pronouns <- dfm_lookup(trump_dfm2, dictionary = pronouns)
 trump_corpus[1]
 trump_pronouns[1,]
 
-textstat_keyness(trump_pronouns, str_detect(docvars(trump_dfm, "source"), "Android"), sort = TRUE) %>% textplot_keyness
+textstat_keyness(trump_pronouns, str_detect(docvars(trump_pronouns, "source"), "Android"), sort = TRUE)
 
+## Your Turn: Create a dictionary of
+## 1. populism (Rooduijn & Pauwels 2011) with these words:
+## c('elit*', 'consensus*', 'undemocratic*', 'referend*', 'corrupt*', 'propagand*', 'politici*', '*deceit*', '*deceiv*', '*betray*', 'shame*', 'scandal*', 'truth*', 'dishonest*', 'establishm*', 'ruling*')
+## 2. Terrorism
+## c('terror*')
+## 3. Tax
+## c('tax*')
+## And study the difference of these words in Trump's tweets from Android and iPhone
+
+## off-the-shelf dictionary
+## validate
+
+
+
+
+
+
+
+
+## Ref
+## Rooduijn, M., & Pauwels, T. (2011). Measuring populism: Comparing two methods of content analysis. West European Politics, 34(6), 1272-1283.
