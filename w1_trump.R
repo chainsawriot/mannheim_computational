@@ -52,7 +52,7 @@ trump_dfm <- dfm(trump_corpus, remove_punct = TRUE, remove_url = TRUE, remove_nu
 
 topfeatures(trump_dfm, 100)
 
-textplot_wordcloud(trump_dfm, min_count = 300, random_order = FALSE,rotation = .25)
+textplot_wordcloud(trump_dfm, min_count = 300, random_order = FALSE)
 
 ## FYI: explore remove_twitter
 
@@ -61,4 +61,29 @@ textplot_wordcloud(trump_dfm, min_count = 300, random_order = FALSE,rotation = .
 textstat_keyness(trump_dfm, str_detect(docvars(trump_dfm, "source"), "Android"), sort = TRUE) %>% head(n = 100)
 
 textstat_keyness(trump_dfm, str_detect(docvars(trump_dfm, "source"), "Android"), sort = TRUE) %>% textplot_keyness
+
+## Dictionary-based method: introduction
+
+kwic(trump_corpus, "me")
+
+### because stopwords include pronouns...
+
+trump_dfm2 <- dfm(trump_corpus, remove_punct = TRUE, remove_url = TRUE, remove_numbers = TRUE, remove_symbols = TRUE)
+
+
+pronouns <- dictionary(list(
+    first_singular = c("i", "me", "my", "mine", "myself"),
+    second = c("you", "your", "yours", "yourself", "yourselves"),
+    first_plural = c('we', 'us', 'our', 'ours', 'ourselves'),
+    third_masculine = c('he', 'him', 'his', 'himself'),
+    third_feminine = c('she', 'her', 'hers', 'herself'),
+    other = c('it', 'its', 'itself', 'they', 'them', 'their', 'themselves', 'themself')
+))
+
+trump_pronouns <- dfm_lookup(trump_dfm2, dictionary = pronouns)
+
+trump_corpus[1]
+trump_pronouns[1,]
+
+textstat_keyness(trump_pronouns, str_detect(docvars(trump_dfm, "source"), "Android"), sort = TRUE) %>% textplot_keyness
 
