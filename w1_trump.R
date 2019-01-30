@@ -99,12 +99,38 @@ textstat_keyness(trump_pronouns, str_detect(docvars(trump_pronouns, "source"), "
 ## off-the-shelf dictionary
 ## validate
 
+afinn <- readRDS('./data/afinn.RDS')
+
+## STEP 1: randomly select some tweets
+## trump_tweets %>% sample_n(50) %>% select(text) %>% saveRDS('./data/validation.RDS')
+## readRDS('./data/validation.RDS') %>% mutate(tid = seq_along(text)) %>% rio::export('./data/validation.csv')
+## STEP 2: read those tweets. Assess the sentiment
+
+## STEP 3: study the correlation between human-coding and machine judgements (e.g. the sentiment score)
 
 
 
+### If the sentiment dictionary is reasonably good, use it for analysis.
+
+trump_afinn <- dfm_lookup(trump_dfm2, dictionary = afinn)
+
+quanteda::convert(trump_afinn, to = 'data.frame') %>%
+    mutate(afinn_score = (neg5 * -5) + (neg4 * -4) + (neg3 * -3) + (neg2 * -2) +
+               (neg1 * -1) + (zero * 0) + (pos1 * 1) + (pos2 * 2) + (pos3 * 3) +
+               (pos4 * 4) + (pos5 * 5)) %>% select(afinn_score) %>%
+        mutate(android = str_detect(docvars(trump_afinn, "source"), "Android")) -> afinn_score
+
+afinn_score %>% group_by(android) %>% summarize(mean_afinn_score = mean(afinn_score), sd_afinn_score = sd(afinn_score))
+
+cor(afinn_score$afinn_score, trump_tweets$retweet_count, method = 'spearman')
 
 
+### Out of Syllabus
+##require(ggridges)
+##afinn_score %>% ggplot(aes(x = afinn_score, y = android)) + geom_density_ridges()
 
 
-## Ref
+## References:
 ## Rooduijn, M., & Pauwels, T. (2011). Measuring populism: Comparing two methods of content analysis. West European Politics, 34(6), 1272-1283.
+## Hansen, L. K., Arvidsson, A., Nielsen, F. Å., Colleoni, E., & Etter, M. (2011). Good friends, bad news-affect and virality in twitter. In Future information technology (pp. 34-43). Springer, Berlin, Heidelberg.
+
