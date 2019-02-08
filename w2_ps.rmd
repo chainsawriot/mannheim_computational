@@ -1,0 +1,58 @@
+# Problem Set #1
+The file `german_party_tweets.RDS` contains the most recent ~3200 tweets (as of 08-02-2019) of major German political parties' official twttier accounts. 
+
+
+## Question 1
+
+In this question, we are going to focus on the tweets from CDU and AfD (the `screen_name` column) and the `text` column is the body of tweets.
+
+```{r}
+require(quanteda)
+require(tidyverse)
+tweets <- readRDS('./data/german_party_tweets.RDS')
+tweets %>% filter(screen_name %in% c("CDU", "AfD"))
+```
+
+Please show the keyness plot of CDU versus AfD and describe in two paragraphs what you have found under the `your interpretation` heading.
+
+```{r}
+```
+
+### Your interpretation (in two paragraphs)
+
+## Question 2
+
+A random subset of 20 tweets from CDU and AfD is available from the file `german_party_tweets_subset.csv` . Please code them for populism and hand in also the coded version of `german_party_tweets_subset.csv`.
+
+Then compare your coding with the dictionary-based analysis using the following dictionary. Do you think the dictionary is good for determining populism in tweets?
+
+`elit*, konsens*, undemokratisch*, referend*, korrupt*, propagand*, politiker*, täusch*, betrüg*, betrug*, *verra*, scham*, schäm*, skandal*, wahrheit*, unfair*, unehrlich*, establishm*, *herrsch*, lüge*`
+
+```{r}
+```
+
+### Your interpretation (in two paragraphs)
+
+## Question 3
+
+Newsmap is a dictionary-based method (plus machine learning) to determine the geopolitical location of digital contents. The German version of the Newsmap dictionary is available  [here](https://raw.githubusercontent.com/koheiw/newsmap/master/dict/german.yml).
+
+Please investigate how to import this dictionary into R and use that in quanteda. List out the top 10 most mentioned countries in their tweets for all parties. Interpret the result in few paragraphs.
+
+```{r}
+require(quanteda)
+require(tidyverse)
+tweets <- readRDS('./data/german_party_tweets.RDS')
+### import the dictionary
+
+```
+
+### Your interpretation (in few paragraphs)
+
+
+
+
+
+Ref: 
+1. Rooduijn, M., & Pauwels, T. (2011). Measuring populism: Comparing two methods of content analysis. West European Politics, 34(6), 1272-1283.
+2. Watanabe, K. (2018). Newsmap: A semi-supervised approach to geographical news classification. Digital Journalism, 6(3), 294-309.

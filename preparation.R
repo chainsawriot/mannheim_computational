@@ -23,3 +23,8 @@ tmls <- get_timelines(c("CDU", "CSU", "SPDDE", "Die_Gruenen", "FDP", "dieLinke",
 tmls %>% filter(screen_name == 'AfD')
 
 saveRDS(tmls, "./data/german_party_tweets.RDS")
+
+tmls <- readRDS("./data/german_party_tweets.RDS")
+
+tmls %>% filter(screen_name %in% c("CDU", "AfD")) %>% group_by(screen_name) %>% sample_n(20) %>% select(screen_name, text) %>% rio::export("./data/german_party_tweets_subset.csv")
+
