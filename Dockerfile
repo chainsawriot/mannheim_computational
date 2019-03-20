@@ -1,4 +1,4 @@
-FROM rocker/rstudio
+FROM rocker/tidyverse
 
 RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
@@ -6,7 +6,10 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zlib1g-dev \
     libgsl2 \
+    libgsl-dev \
     && install2.r --error \
-    tidyverse rio quanteda rtweet topicmodels stm
+    rio quanteda rtweet topicmodels stm \
+    && chown rstudio.rstudio /home/rstudio .
+    
     
 	
