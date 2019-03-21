@@ -96,7 +96,7 @@ fifa %>% select(Name, Value) %>% mutate(value_ending = str_extract(Value, "M|K")
   mutate(value_ending_meaning = replace_na(value_ending_meaning, 0)) %>%
   mutate(actual_value = as.numeric(value_number) * value_ending_meaning)
 
-## You can select only the thing you need
+## You can select only the columns you need
 
 fifa %>% select(Name, Value) %>% mutate(value_ending = str_extract(Value, "M|K"),
                                         value_number = str_extract(Value, "[0-9\\.]+")) %>%
@@ -115,5 +115,62 @@ fifa %>% select(Name, Value) %>% mutate(value_ending = str_extract(Value, "M|K")
 
 ### YOUR TURN: Money ball - select the player with the actual_value less than 1000000,
 ### with the highest Overall score.
+
+### Verb #5: summarise / summarize : generate one number summary of your data.
+
+fifa %>% summarise(mean_age = mean(Age))
+
+fifa %>% summarise(mean_age = mean(Age), sd_age = sd(Age))
+
+### How many German Players are there?
+
+fifa %>% filter(Nationality == 'Germany') %>% summarise(n = n())
+
+## or fifa %>% filter(Nationality == 'Germnay') %>% tally
+
+### data analysis scenario: what is the correlation between Age and Overall?
+
+fifa %>% summarise(cor_age_overall = cor(Age, Overall))
+
+## ggplot is beyond the scope of this course. But you can look into it.
+fifa %>% ggplot(aes(x = Age, y = Overall)) + geom_point()
+
+## YOUR TURN: What is the correlation between Overall and Potential among German Players?
+
+## Summarise is more useful, when couples with group_by
+
+### group_by: divide up the data by variable(s) and do further data manipulation.
+
+fifa %>% group_by(Nationality) ## Nothing...
+
+## But
+
+fifa %>% group_by(Nationality) %>% summarise(n = n())
+
+## OUR TURN: which country contributes the most players?
+
+## OUR TURN: which country has in average the youngest players?
+
+## OUR TURN: which country has in average the most expensive players?
+
+## OUR TURN: median?
+
+## OUR TURN: which club has in sum the higest valued players?
+
+## OUR TURN: which club has in sum the higest valued German players?
+
+## YOUR TURN: Calculate and rank the worthiness of all players.
+## (ratio = value / overall, too high, not worth it.)
+
+## YOUR TURN: I want to find a worthy goalkeeper with some value.
+
+fifa %>% filter(`Preferred Positions` == "GK")
+
+## YOUR TURN: Who are the most overrated GK?
+
+## YOUR TURN: I want to know which club has overspent. 
+## (i.e. when the total value of all players divides by mean overall ratio is too high)
+
+## YOUR TURN: If I want to look for good and cheap player, which country should I go for?
 
 
