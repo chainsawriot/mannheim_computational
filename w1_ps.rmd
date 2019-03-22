@@ -21,7 +21,7 @@ wine <- import('./data/winemag-data-130k-v2.csv') %>% tbl_df
 
 ## Question 0 (Warm-up)
 
-Mr. Chan is a sommelier but don't have a deep pocket. He would like to have a Riesling from Germany, but cheaper than USD 15. Select for Mr. Chan a wine with the higest points and lowest price.
+Mr. Chan is a sommelier but doesn't have a deep pocket. He would like to have a Riesling from Germany, but cheaper than USD 15. Select for Mr. Chan a wine with the higest quality (points) and lowest price.
 
 ```{r}
 ```
@@ -35,7 +35,7 @@ Rank the countries in descending order by the number of wines included in the da
 
 ## Question 1.2
 
-Rank the countries in descending order by the average points of wines produced.
+Rank the countries in descending order by the average quality of wines produced.
 
 ```{r}
 ```
@@ -78,7 +78,7 @@ Hints: You need to deal with the NA cases.
 
 ## Question 3.3
 
-Has an older wine in general higher points?
+Has an older wine in general higher quality?
 
 ```{r}
 ```
@@ -94,15 +94,13 @@ Hints #2: `options("scipen"=100, "digits"=4)` is useful here.
 ```{r}
 ```
 
-After adjusted for year and points and compared with German wines, the wines from which country are in average the most overpriced?
+After adjusted for year and quality (points) and compared with German wines, the wines from which country are in average the most overpriced?
 
 ### Your interpretation
 
 ## Question 3.4
 
-Mr. Chan the cheapstake sommelier is currently located in Germany and planning his vacation. He would like to visit a country produces the cheapest wines, regardless of points and year.
+Mr. Chan the cheapstake sommelier is currently located in Germany and planning his vacation. He would like to visit a country produces the cheapest wines, regardless of quality (points) and year.
 Based on the model from Question 3.4, make one recommendation to Mr. Chan. Oh, yes, Mr. Chan is also a picky statistician. He accepts recommendations with alpha < 0.001 only.
-
-### Your interpretation
 
 ### Your interpretation
