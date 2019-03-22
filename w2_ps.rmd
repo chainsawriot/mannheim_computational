@@ -1,4 +1,11 @@
-# Problem Set #1
+---
+title: "Problem Set #2 - Analysis of tweets."
+author: "Wie heißen Sie?"
+date: "3/22/2019"
+output: html_document
+---
+
+# Problem Set #2
 The file `german_party_tweets.RDS` contains the most recent ~3200 tweets (as of 08-02-2019) of major German political parties' official twttier accounts. 
 
 

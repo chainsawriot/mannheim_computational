@@ -168,9 +168,11 @@ fifa %>% filter(`Preferred Positions` == "GK")
 
 ## YOUR TURN: Who are the most overrated GK?
 
+## How about ST? Can we use filter(`Preferred Positions` == "ST")?
+
 ## YOUR TURN: I want to know which club has overspent. 
 ## (i.e. when the total value of all players divides by mean overall ratio is too high)
 
-## YOUR TURN: If I want to look for good and cheap player, which country should I go for?
+## YOUR TURN: If I want to look for good and cheap player, which nationality of players should I go for?
 
 

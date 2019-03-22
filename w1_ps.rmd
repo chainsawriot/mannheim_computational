@@ -1,0 +1,108 @@
+---
+title: "Problem Set #1 - Analysis of Wine reviews"
+author: "Wie heißen Sie?"
+date: "3/22/2019"
+output: html_document
+---
+
+
+# Problem Set #1
+The file `winemag-data-130k-v2.csv` contains about 130,000 wine reviews from winemag.com.
+
+More information about the data is available [here](https://www.kaggle.com/zynicide/wine-reviews).
+
+```{r}
+require(tidyverse)
+require(rio)
+require(stringr)
+
+wine <- import('./data/winemag-data-130k-v2.csv') %>% tbl_df
+```
+
+## Question 0 (Warm-up)
+
+Mr. Chan is a sommelier but don't have a deep pocket. He would like to have a Riesling from Germany, but cheaper than USD 15. Select for Mr. Chan a wine with the higest points and lowest price.
+
+```{r}
+```
+
+## Question 1.1
+
+Rank the countries in descending order by the number of wines included in the dataset.
+
+```{r}
+```
+
+## Question 1.2
+
+Rank the countries in descending order by the average points of wines produced.
+
+```{r}
+```
+
+Do you think the ranking makes any sense? Why or why not?
+
+### Your interpretation (in two paragraphs)
+
+## Question 2.1
+
+Which varieties of wine are in average more expensive?
+
+```{r}
+```
+
+Which varieties of wine are in average highly rated?
+
+```{r}
+```
+
+## Question 3
+
+In the title of wine, the year of production is usually included. But not all numbers in the title are useful. Let's make an assumption that all numbers start with either 19 and 20 are year of production. We consider only wines produced from 1997 to 2016 in this question.
+
+## Question 3.1
+
+Extract the year of production from all titles and show the frequency distribution (extra point if you can also show the percentage frequency distribution).
+
+```{r}
+```
+
+## Question 3.2
+
+Has an older wine in general higher price?
+
+Hints: You need to deal with the NA cases.
+
+```{r}
+```
+
+## Question 3.3
+
+Has an older wine in general higher points?
+
+```{r}
+```
+
+## Question 3.4
+
+Create a regression model with price as the dependent variable. For the independent variables, consider points, year and country. For the country, please use Germany as the reference group.
+
+Hints #1: ?as.factor, ?relevel
+
+Hints #2: `options("scipen"=100, "digits"=4)` is useful here.
+
+```{r}
+```
+
+After adjusted for year and points and compared with German wines, the wines from which country are in average the most overpriced?
+
+### Your interpretation
+
+## Question 3.4
+
+Mr. Chan the cheapstake sommelier is currently located in Germany and planning his vacation. He would like to visit a country produces the cheapest wines, regardless of points and year.
+Based on the model from Question 3.4, make one recommendation to Mr. Chan. Oh, yes, Mr. Chan is also a picky statistician. He accepts recommendations with alpha < 0.001 only.
+
+### Your interpretation
+
+### Your interpretation
