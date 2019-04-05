@@ -1,5 +1,7 @@
 # Quantitative Methoden I: Datenerhebung und -analyse mit R
 
+<img src="data/mkw724.png" align="right" />
+
 FSS 2019
 
 # Preparation (before 12.04.2019)
