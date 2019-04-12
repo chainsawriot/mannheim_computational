@@ -17,3 +17,9 @@ str_detect(scrabble, "Q")
 scrabble[820]
 
 str_extract(scrabble, "QA")
+
+movies <- c('1999', '2001 space odyssey', '24g')
+
+## how to extract all years (19xx and 20xx)? i.e. only 1984 and 2001
+
+
