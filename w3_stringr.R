@@ -11,6 +11,7 @@ str_subset(scrabble, "A")
 str_subset(scrabble, "A{2}") ## Two A
 
 str_subset(scrabble, "X|Y") ## X or Y
+str_subset(scrabble, "^[X-Z]") ## X to Z in the beginning
 
 str_detect(scrabble, "Q")
 scrabble[820]

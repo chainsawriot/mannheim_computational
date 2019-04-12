@@ -16,7 +16,7 @@ It is better for you to create a project based on this repo:
 
 File -> New Project -> Version Control -> Repo URL: https://github.com/chainsawriot/mannheim_computational.git
 
-You may also our [rstudio.cloud project](https://rstudio.cloud/project/272694)
+You may also use the [rstudio.cloud project](https://rstudio.cloud/project/272694)
 
 # Reading
 
