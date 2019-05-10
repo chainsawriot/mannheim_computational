@@ -9,7 +9,7 @@ FSS 2019
 Please install the following packages before the 12.04.2019 session.
 
 ```r
-install.packages(c('tidyverse', 'rio', 'quanteda', 'rtweet', 'topicmodels', 'stm')
+install.packages(c('tidyverse', 'rio', 'quanteda', 'rtweet', 'topicmodels', 'stm'))
 ```
 
 It is better for you to create a project based on this repo:
