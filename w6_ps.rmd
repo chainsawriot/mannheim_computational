@@ -1,0 +1,41 @@
+---
+title: "Problem Set #3 - Analysis of TED Talks."
+author: "Wie heißen Sie?"
+date: "3/22/2019"
+output: html_document
+---
+
+# Problem Set #3
+The file `ted_main.csv` contains information of 2550 TED Talks. 
+
+
+## Question 1
+
+Preparation:
+
+```{r}
+require(quanteda)
+require(tidyverse)
+require(stm)
+require(rio)
+ted <- rio::import('./data/ted_main.csv')
+dfm_stm <- dfm(corpus(ted$description), remove_numbers = TRUE, remove_punct = TRUE, remove_symbols = TRUE, remove = stopwords("english")) %>% dfm_wordstem() %>% dfm_trim(min_docfreq = 5) %>% quanteda::convert(to = "stm")
+```
+
+Please train a topic model with the following parameters:
+
+* number of topics = 30
+* seed = 2019
+
+and plot the summary. Which topic is the most common?
+
+```{r}
+```
+
+
+## Question 2
+
+Study the correlation between theta of each topic and the number of views. Which topic has the lowest correlation with the number of views? What are the top 20 topic words of this topic?
+
+```{r}
+```
