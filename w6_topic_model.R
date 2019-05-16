@@ -36,18 +36,22 @@ tokens_wordstem(tokens("Ich versprech dir nichts und geb dir alles. Ich erwarte 
 
 install.packages('udpipe')
 require(udpipe)
-udmodel <- udpipe_download_model(language = "german")
+###udmodel <- udpipe_download_model(language = "german")
+udmodel <- udpipe_load_model('german-gsd-ud-2.3-181115.udpipe')
 udpipe(x = "Hong hat einen roten Rock getragen!", object = udmodel)$lemma
 ### "Hong"     "haben"    "ein"      "rot"      "Rock"     "getragen" "!"
 udpipe(x = "Hong trug einen roten Rock!", object = udmodel)$lemma
 ### [1] "Hong"   "tragen" "ein"    "rot"    "Rock"   "!" 
+udpipe(x = "Ich versprech dir nichts und geb dir alles. Ich erwarte nichts und träum von Liebe.", object = udmodel)$lemma
+
 udpipe(x = "ist war wäre seien waren bist sein", object = udmodel)$lemma
+
 
 wiki_dfm_stem <- dfm_wordstem(wiki_dfm)
 
 ### remove sparse term
 
-wiki_dfm_processed <- dfm_trim(wiki_dfm_stem, min_docfreq = 50) # 
+wiki_dfm_processed <- dfm_trim(wiki_dfm_stem, min_docfreq = 50)
 
 dfm_tfidf(wiki_dfm_processed) %>% textplot_wordcloud(color = c('red', 'pink', 'green', 'purple', 'orange', 'blue'), n = 100)
 
@@ -76,13 +80,30 @@ dfm_stm <- readRDS("./data/movie_dfm_stm.RDS")
 stm_model <- readRDS("./data/stm_mode.RDS")
 wiki <- readRDS("./data/wiki_movie_plots.RDS") %>% filter(genre != "unknown" & origin == "American") %>% select(title, year, genre)
 
-
 labelTopics(stm_model)
-plot(stm_model, type = "summary")
-topicQuality(stm_model, docments = dfm_stm$documents)
 
-##devtools::install_github("cpsievert/LDAvis")
-##install.packages('servr')
+### FOR VALIDATION
+# 
+# set.seed(12901802)
+# test_sample <- sample(1:64, size = 10)
+# keywords <- labelTopics(stm_model, n = 4)[[1]][test_sample,]
+# intruders <- labelTopics(stm_model, n = 4600)[[1]][test_sample, 4600]
+# 
+# candidates <- cbind(keywords, intruders, rows = 1:15) %>% as_tibble
+# 
+# shuffle_df <- function(x, candidates) {
+#   res <- candidates[x, sample(1:5)]
+#   colnames(res) <- c("1", "2", "3", "4", "5")
+#   return(res)
+# }
+# map_dfr(1:10, shuffle_df, candidates = candidates) %>% rio::export("./data/stm_validate.csv")
+
+
+plot(stm_model, type = "summary")
+
+#install.packages('devtools')
+install.packages('servr')
+devtools::install_github("cpsievert/LDAvis")
 toLDAvis(stm_model, docs = dfm_stm$documents, reorder.topics = FALSE)
 
 
